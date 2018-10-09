@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta property="og:image"              content="https://pierre-smolinski.yo.fr/img/fieldd.png" />
+		<meta name="description" content="Pierre SMOLINSKI, développeur intégrateur en réalisation d'applications Web à Nantes. Actuellement en recherche d'emploi." />
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+		<link rel="stylesheet" href="csstyle/normalize.css">
+		<link rel="stylesheet" href="csstyle/style.css">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+		
+		<title>Pierre SMOLINSKI, développeur web à Nantes</title>
+	</head>
+<body>
+	<header>
+		<nav class="menu flex" id="flexnav">
+			<button id="sound"><img src="img/audio-off.png" alt="" /></button>
+			<a href="#about"><div id="uno" class="iconav"></div><span class="header">Présentation</span></a>
+			<a href="#projects" ><div id="dos" class="iconav"></div><span class="header">Réalisations</span></a>
+			<a href="index.php" id="identity">
+				<div>
+					<h1 class="tert" id="uns">Pierre Smolinski</h1><h2 class="tert" id="deus">πR</h2>
+				</div>
+			</a>
+			<a href="#competences" ><div id="tres" class="iconav"></div><span class="header">Compétences</span></a>
+			<a href="#contact" ><div id="quatro" class="iconav"></div><span class="header">Contact</span></a>
+		</nav>
+	</header>
+	<main>
+		<div class="container">
+			<section class="section" id="about">
+				<div class="about">
+					<h2  id="preambule">Préambule</h2>&nbsp;<img id="preEnBulle" src="img/fieldd.png" alt="illustration du préambule"/>
+				</div>
+				<div id="resume">
+					<p>Je me nomme Pierre Smolinski, j'ai 28 ans. Je suis actuellement à la recherche d'un emploi en tant que développeur web. J'ai pu acquérir un premier socle de connaissances par l'intermédiaire d'une formation de la <a href="https://3wa.fr/" class="textlinks" target="_blank" rel="noreferrer">3W Academy</a>. Ceci au cours de la première moitié de l'année 2018.</p>
+					<p>Vous trouverez ci-dessous une partie des travaux que j'ai réalisés. Disponible dès maintenant, vous pouvez me contacter via la rubrique <a class="textlinks" href="#contact">Contact</a> en bas de la page.</p>
+				</div>
+				<img class="action imageset rounded" src="img/decor.jpg" alt="En tenue de sport" />
+			</section>
+			<section  class="section" id="lettermind">
+				<div id="effect2" class="voile">
+					<h2 id="letterm">Lettermind</h2>
+				</div>
+				<div id="power" class="off">
+					<button class="activebutton" id="light">
+					</button>
+					<div id="rustine" class="shadow"></div>
+				</div>
+				<div id="effect" class="voile">
+					<div class="whole">
+						<div class='center'>
+							<div class="level">
+								<button class="inactivebutton" id="lvlchange" disabled aria-hidden="true">				
+								</button>
+								<p id="lvl" class="bg-white green">Niveau I</p>
+							</div>
+							<div class="pregame">
+								<p id='play'>
+									<button class="inactivebutton gamebutton" id="start" disabled aria-hidden="true"></button>
+								</p>
+								<button class="inactivebutton" id="instructions" disabled aria-hidden="true">
+								</button>
+								<button class="inactivebutton" id="topscores" onclick="openscore();event.preventDefault();" disabled aria-hidden="true"></button>
+								<button class="inactivebutton" id="infos" disabled aria-hidden="true"></button>
+								<button class="inactivebutton" id="statistics" disabled aria-hidden="true"></button>		
+							</div>							
+							<div class="how">
+								<ul>
+								    <li>
+								        Vous êtes à la recherche d'un mot de 5 lettres.
+								    </li>
+									<li>
+										<img src="img/pinblack.png" alt="Icone lettre bien placée" /> pour chaque lettre bien placée.
+									</li>
+									<li>
+										<img src="img/pinwhite.png" alt="Icone lettre bien placée" /> pour chaque lettre mal placée.
+									</li>
+									<li>Les mots autorisés sont ceux du Scrabble® (conjugaisons permises).</li>
+									<li>Le nombre de solutions possibles varie selon le niveau (voir infos).</li>
+									<li>La casse (minuscule/majuscule) est sans importance.</li>
+									<li>Les accents sont sans importance.</li>
+								</ul>
+							</div>
+							<div class="further">
+								<p class="bg-white">En mode <span class="red">difficile</span>, c'est parmi 7823 mots que peut se trouver la solution. Soit tout ceux autorisés au Scrabble®.<br/>Cette liste comporte 33 palindromes !</p>
+								<p class="bg-white">En mode <span class="yellow">intermédiaire</span>, la solution est parmi 2799 mots.</p>
+								<p class="bg-white">En mode <span class="green">facile</span>, la solution est parmi 1387 mots. Pas de conjugaison sauf infinitifs.</p>
+							</div>
+							<div id="stats" class="bg-white"></div>
+						</div>
+						<hr>
+						<div class='flex'>
+							<?php $attempts = array('first','second','third', 'fourth','fifth', 'sixth','seventh', 'eighth','ninth', 'tenth' , 'eleventh', 'twelfth');
+							for($i = 1; $i < 13; $i++) : ?> 
+								<?php if(($i==1) ||($i==7)): ?>
+									<div class="half">
+								<?php endif ?>
+									<div class="<?=$i?> gameline" >
+										<label for="<?=$attempts[$i-1]?>"><?=$i?>.</label>
+										<input type="text" class="tentries <?=$attempts[$i-1]?>"  disabled>
+										<button class="game details" disabled id="<?=$attempts[$i-1]?>" value="Essai">
+											<img src="img/checkedb.svg" alt="Icone de validation d'une réponse"/>
+										</button>
+										<p class="result" id="<?=$attempts[$i-1]?>try" aria-hidden="true"></p>
+									</div>
+									<?php if(($i==6) ||($i==13)): ?>
+										</div>
+									<?php endif ?>
+							<?php  endfor ?>
+						</div>
+					</div>
+					<hr>
+					<div class="center">
+						<p class="result" id="answer" aria-hidden="true"></p>
+						<div class="pregame" id="actions">
+							<button  id="help" class="inactivebutton" disabled aria-hidden="true"></button>
+							<button id="newgame" class="inactivebutton" disabled aria-hidden="true"></button>
+							<button id="giveup" class="inactivebutton" disabled aria-hidden="true"></button>
+							<button  id="comments" class="inactivebutton" disabled aria-hidden="true"></button>
+						</div>
+					</div>
+					<div id="winners"></div>
+				</div>
+			</section>
+			<section class="section" id="projects">
+				<h2 class="entete whiter">Réalisations</h2>
+				    <div class="cntr"><img id='down' src="img/log.png" alt="" /><p>Une partie des travaux sur lesquels j'ai bûché et planché.</p><img src="img/board.png" alt="" /></div>
+					<div class="formation flex">
+						<img class="miniatures" id="img1" src="img/ardoise8.jpg" alt="POO en JavaScript, canvas" />
+						<img class="miniatures" id="img2" src="img/wolfgang8.jpg" alt="Slider(jQuery), intégration de vidéo" />
+						<img class="miniatures" id="img3" src="img/carrousel8.jpg" alt="Diaporama de photos(JavaScript)" />
+					</div>
+				<div id="wholepic" class="picture">
+				  <span class="close">&times;</span>
+				  <div id="caption"></div>
+				  <img src="img/ardoise8.jpg" class="pic-container" id="special" alt="Aperçu">
+				</div>
+			</section>
+			<section class="section"  id="competences">
+				<h2 class="entete">Compétences</h2>
+			    <div id="skills">
+			    	<ul class="flexdown quatuor">
+				        <li>
+				        	<div class="bs middle">
+				        		<p class="imageset">HTML</p>
+				        		<img class="resiz" src="img/html.png" alt="Logo HTML" />
+				        	</div>
+				        </li>
+	 					<li>
+	 						<div class="bs middle">
+	 							<p class="imageset">CSS</p>
+	 							<img class="resiz" src="img/css.png" alt="Logo CSS" />
+	 						</div>
+	 					</li>
+	 					<li>
+	 						<div class="bs middle">
+	 							<p class="imageset">Javascript</p>
+	 							<img class="global" src="img/javas.png" alt="Logo Javascript" />
+	 						</div>
+	 					</li>
+	 					<li id="eleph" >
+	     					<div class="bs">
+	     						<p class="imageset">PHP</p>
+	     						<figure>
+	     							<img class="global" id="animal" src="img/elephant.png"   alt="Logo PHP"  />
+	     							<figcaption id="elephant">Si le son est sur "ON" alors c'est sûr qu'on barrir ensemble !</figcaption>
+	     						</figure>
+	     					</div>
+	     				</li>
+	 				</ul>
+	 				<ul class="flexdown quatuor">     				
+	     				<li id="dolph">
+	     					<div class="bs">
+	     						<p class="imageset">MySQL</p>
+	     						<figure>
+	     							<img class="global" src="img/myss.png" alt="Logo MySQL" />
+	     							<figcaption id="dolphin">J'espère que mon chant ne te fera pas Flipper !</figcaption>
+	     						</figure>
+	     					</div>
+	     				</li>
+	     				<li>
+	     					<div class="bs" id="rwd">
+		     					<p class="imageset">Responsive</p>
+		     					<img class="global" src="img/responsive.png" alt="Illustration Responsive Web Design" />
+		     					<p class="imageset">Web Design</p>
+	     					</div>
+	     				</li>
+	     				<li>
+	 						<div class="bs middle">
+	 						<p class="imageset">jQuery</p>
+	 						<img class="global" src="img/jquery.png" alt="Logo jQuery" /></div>
+	 					</li>
+	 					<li>
+	 						<div class="bs middle">
+	 						<p class="imageset">Bootstrap</p>
+	 						<img class="global" src="img/bootstrap.jpg" alt="Logo Bootstrap" /></div>
+	 					</li>	
+	     			</ul>
+     			</div>
+     		</section>
+     	</div>
+	</main>
+	<footer class='flexdown'>
+		<div class="foot coords">
+			<ul>
+				<li>
+					<span id="coordsname">Pierre Smolinski</span>
+				</li>
+				<li>
+					<img class="duo" src="img/map-location.png" alt="Logo Adresse" /> 20, rue du Gué Robert <br>44000 Nantes, France
+				</li>
+				<li>
+					<img class="uno" src="img/oldtel.png" alt="Logo Téléphone" />
+					<a href="tel:+33646687275">+33(0)6 46 68 72 75</a>
+				</li>
+				<li>
+					<img class="duo" src="img/email.png" alt="Logo Mail" />
+					<a href="mailto:pierre.smolinski7@gmail.com"> pierre.smolinski7@gmail.com</a>
+				</li>
+			</ul>
+		</div>
+		<div class="foot contactform">
+			<hr class="lastsep">
+			<div id='contact'>
+				<p id="contactme">ME CONTACTER</p>
+				<form method="post" action="php/traitb.php">
+					<input class="inputform" id="name" name="nom" type="text" placeholder="NOM" required>
+			  		<input class="inputform" id="email" name="email" type="text" placeholder="E-MAIL" required>
+			  		<textarea id="message" name="message" placeholder="MESSAGE" required></textarea>
+	  				<button id="submit" name="envoi" type="submit"></button> 
+	 			</form>
+ 			</div>
+		</div>
+		 <script></script> 
+			<audio id="v1">
+		         <source src='sound/elephant4.mp3' type='audio/mp3'>
+		         <source src='sound/elephant4.wav' type='audio/wav'>
+	         </audio>
+	         <audio id="v2">
+	         		<source src='sound/dolphin.mp3' type='audio/mp3'>
+	         		<source src='sound/dolphin.ogg' type='audio/mp3'>
+	         		<source src='sound/dolphin.wav' type='audio/mp3'>
+	         </audio>
+	         <audio id="v3">
+	         		<source src='sound/power_up.mp3' type='audio/mp3'>
+	         		<source src='sound/power_up.wav' type='audio/wav'>
+	         </audio> 
+	         <audio id="v4">
+	         		<source src='sound/power_down.mp3' type='audio/mp3'>
+	         		<source src='sound/power_down.ogg' type='audio/ogg'>
+	         		<source src='sound/power_down.wav' type='audio/wav'>
+	         </audio> 
+	         <audio id="v5">
+	         		<source src='sound/replay.mp3' type='audio/mp3'>
+	         </audio>
+	         <audio id="v6">
+	         		<source src='sound/failure.mp3' type='audio/mp3'>
+	         		<source src='sound/failure.wav' type='audio/wav'>
+	         </audio>
+	         <audio id="v7">
+	         		<source src='sound/tranquille.mp3' type='audio/mp3'>
+	         		<source src='sound/tranquille.ogg' type='audio/ogg'>
+	         		<source src='sound/tranquille.wav' type='audio/wav'>
+	         </audio>
+	         <audio id="v8">
+	         		<source src='sound/rules.mp3' type='audio/mp3'>
+	         </audio>
+	         <audio id="v9">
+	         		<source src='sound/switch.mp3' type='audio/mp3'>
+	         </audio>
+
+	         	         	    	         	         	         
+	         <div class="loading-bar"></div>
+	         <div id='licence'>
+	         	<div>Icons made by <a href="http://www.freepik.com"  target="_blank"  rel="noreferrer" title="Freepik">Freepik</a>, <a href="https://www.flaticon.com/authors/smashicons"  target="_blank"  rel="noreferrer" title="Smashicons">Smashicons</a>, <a href="https://www.flaticon.com/authors/twitter"  target="_blank"  rel="noreferrer" title="Twitter">Twitter</a>, <a href="https://www.flaticon.com/authors/smalllikeart"  target="_blank"  rel="noreferrer" title="smalllikeart">smalllikeart</a>, <a href="https://www.flaticon.com/authors/pixel-perfect"  target="_blank"  rel="noreferrer" title="Pixel perfect">Pixel perfect</a>, <a href="https://www.flaticon.com/authors/pixel-buddha"  target="_blank"  rel="noreferrer" title="Pixel Buddha">Pixel Buddha</a>, <a href="https://www.flaticon.com/authors/anton-saputro"  target="_blank"  rel="noreferrer" title="Anton Saputro">Anton Saputro</a>, <a href="https://www.flaticon.com/authors/vectors-market"  target="_blank"  rel="noreferrer" title="Vectors Market">Vectors Market</a>, <a href="https://www.flaticon.com/authors/dave-gandy"  target="_blank"  rel="noreferrer" title="Dave Gandy">Dave Gandy</a>, <a href="https://www.flaticon.com/authors/daniel-bruce"  target="_blank"  rel="noreferrer" title="Daniel Bruce">Daniel Bruce</a> from <a href="https://www.flaticon.com/"  target="_blank"  rel="noreferrer" title="Flaticon">www.flaticon.com</a>,  is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank"  rel="noreferrer">CC 3.0 BY</a></div>
+				
+				<div>Effects sound from <a href="https://www.zapsplat.com" title="Zapslat" target="_blank"  rel="noreferrer">Zapslat.com</a></div>
+			</div>
+	</footer>
+	<script
+  src="https://code.jquery.com/jquery-1.7.0.min.js"
+  integrity="sha256-/05Jde9AMAT4/o5ZAI23rUf1SxDYTHLrkOco0eyRV84="
+  crossorigin="anonymous"></script>
+		<script src="javascript/utilities.js"></script>
+		<script src="javascript/gamesuite.js"></script>
+		<script src="javascript/eventsd.js"></script>
+		<script src="javascript/base.js"></script>
+</body>
+
+

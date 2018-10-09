@@ -1,0 +1,14 @@
+.answer {
+	font-size: 2em;
+	font-family: Calibri, Arial, sans-serif;
+}
+
+a {
+	text-decoration: none;
+}
+
+.back {
+	display: block;
+	margin: 0 0 2em;
+	font-size: 1.5em;
+}
